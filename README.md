@@ -3,6 +3,7 @@
 # To-Do-List
 
 To-Do-List is mini-project made with Flask and MongoDB.
+As it is now it has been dockerized. Springloaded with a Dockerfile and a dockercompose file to run this app anywhere in containers.
 
 ## Built using :
 
@@ -14,6 +15,7 @@ To-Do-List is mini-project made with Flask and MongoDB.
 
 ## Set up environment for using this repo:
 
+This is the classic deploy method:
 	Install Python ( If you don't have already )
 		`sudo apt-get install python`
 		
@@ -27,8 +29,18 @@ To-Do-List is mini-project made with Flask and MongoDB.
 		`pip install bson`
 		`pip install pymongo'
 		
+The new method is:
+
+	download this code via git
+	install docker
+	docker-compose up -d
+	$profit
+	
 
 ## Run :
+
+	See above for the Docker method, for the old manual method see:
+
 	Run MongoDB
 		1) Start MongoDB
 			`sudo service mongod start`
