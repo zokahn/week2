@@ -1,16 +1,16 @@
 version: "3.1"
 
 services:
-week2-mongo:
+  week2-mongo:
     image: bartvandenheuvel/week2-mongo:v1
     volumes:
-      -"~/data:/data/db"
+      - "~/data:/data/db"
     networks:
     - week2
     ports:
     - "27017:27017"
 
-week2-app:
+  week2-app:
     image: bartvandenheuvel/week2:v1
     networks:
     - week2
