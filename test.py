@@ -1,8 +1,21 @@
 from flask import Flask, render_template,request,redirect,url_for # For flask implementation
 from pymongo import MongoClient # Database connector
 from bson.objectid import ObjectId # For ObjectId to work
+import os
 
-client = MongoClient('localhost', 27017)    #Configure the connection to the database
+
+#containerization measure
+# Take environment variable as db connection or just take localhost as default
+
+try:
+    mongo_dest = os.environ["MONGO_DEST"]
+    #print ("Using " + mongo_dest + " as Mongo dest connection") 
+    client = MongoClient("mongo_dest", 27017)    #Configure the connection to the database
+except KeyError:
+    #print ("Using localhost as Mongo dest connection")
+    client = MongoClient('localhost', 27017)    #Configure the connection to the database
+
+
 db = client.camp2016    #Select the database
 todos = db.todo #Select the collection
 
