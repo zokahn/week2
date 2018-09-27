@@ -9,7 +9,7 @@ spec:
   - name: week2-mongo
     image: bartvandenheuvel/week2-mongo:v1
   - name: week2
-    image: bartvandenheuvel/week2:v1.1
+    image: bartvandenheuvel/week2:v1.2
     ports:
     - name: tasks-port
       containerPort: 5000
