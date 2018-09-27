@@ -2,12 +2,17 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: week2
+  labels:
+   app: week2-app
 spec:
   containers:
   - name: week2-mongo
     image: bartvandenheuvel/week2-mongo:v1
   - name: week2
     image: bartvandenheuvel/week2:v1.1
-    env: 
-    - name: MONGO_DEST
-      value: localhost
+    ports:
+    - name: tasks-port
+      containerPort: 5000
+    env:
+     - name: MONGO_DEST
+       value: localhost

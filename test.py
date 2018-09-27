@@ -10,7 +10,7 @@ import os
 try:
     mongo_dest = os.environ["MONGO_DEST"]
     #print ("Using " + mongo_dest + " as Mongo dest connection") 
-    client = MongoClient("mongo_dest", 27017)    #Configure the connection to the database
+    client = MongoClient(mongo_dest, 27017)    #Configure the connection to the database
 except KeyError:
     #print ("Using localhost as Mongo dest connection")
     client = MongoClient('localhost', 27017)    #Configure the connection to the database
