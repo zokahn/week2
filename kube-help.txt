@@ -1,0 +1,3 @@
+# run this to check
+#
+# kubectl run busybox --image=busybox --restart=Never --tty -i --generator=run-pod/v1 --env "POD_IP=$(kubectl get pod week2 -o go-template='{{.status.podIP}}')"
