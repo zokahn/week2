@@ -13,6 +13,33 @@ As it is now it has been dockerized. Springloaded with a Dockerfile and a docker
 	HTML5 (jinja2) : For Form and Table
 
 
+
+## Docker project by Bart van den Heuvel
+Using the code of this project to 'Dockerize' an application. Just picked this project as a simple flask-mongo project to put in a container. Then run it on Docker, in a Docker Swarm via a Dockerfile. Also running it Kubernetes in different. All while showcasing different options and features of the container platforms.
+
+This containerization containts two containers
+- Application container (this code)
+- MongoDB container
+
+The Dockerfile and Kubernetes yaml files will take care of everything. However action need to be taken to activate the containers and to use the running application. These actions and steps are listed below on each platform.
+
+
+### Kubernetes
+
+To run the application
+'''
+kubectl create -f week2-pod.yaml
+'''
+
+To have a local networkport forward to the webserver running in the pod (connect your browser to http://localhost:8081 after)
+'''
+kubectl port-forward week2 8081:5000
+'''
+
+
+
+
+
 ## Set up environment for using this repo:
 
 This is the classic deploy method:
