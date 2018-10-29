@@ -27,14 +27,14 @@ The Dockerfile and Kubernetes yaml files will take care of everything. However a
 ### Kubernetes
 
 To run the application
-'''
+```
 kubectl create -f week2-pod.yaml
-'''
+```
 
 To have a local networkport forward to the webserver running in the pod (connect your browser to http://localhost:8081 after)
-'''
+```
 kubectl port-forward week2 8081:5000
-'''
+```
 
 
 
