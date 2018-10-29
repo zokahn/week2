@@ -40,7 +40,7 @@ kubectl port-forward week2 8081:5000
 
 
 
-## Set up environment for using this repo:
+## How the containers were loaded using this repo:
 
 This is the classic deploy method:
 	Install Python ( If you don't have already )
@@ -64,7 +64,7 @@ The new method is:
 	$profit
 	
 
-## Run :
+##  How it would Run if it were'nt for container :
 
 	See above for the Docker method, for the old manual method see:
 
