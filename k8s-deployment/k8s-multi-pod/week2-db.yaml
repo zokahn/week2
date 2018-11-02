@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: week2-mongo
+spec:
+  replicas: 1
+  selector:
+    app: week2-mongo
+  template:
+    metadata:
+      name: week2-mongo
+      labels:
+        app: week2-mongo
+    spec:
+      containers:
+      - name: mongo-db
+        image: bartvandenheuvel/week2-mongo:v1
+        ports:
+        - name: mongo-db-port
+          containerPort: 27018

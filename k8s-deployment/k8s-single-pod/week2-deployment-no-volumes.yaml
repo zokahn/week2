@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: week2-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: week2
+    spec:
+      containers:
+      - name: week2
+        image: bartvandenheuvel/week2:v1.2
+        ports:
+        - name: http-port
+          containerPort: 5000
+        env:
+          - name: MONGO_DEST
+            value: localhost
+      - name: week2-mongo
+        image: bartvandenheuvel/week2-mongo:v1
