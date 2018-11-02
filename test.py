@@ -22,6 +22,8 @@ todos = db.todo #Select the collection
 app = Flask(__name__)
 title = "TODO with Flask"
 heading = "ToDo Reminder"
+hostname = os.environ["HOSTNAME"]
+
 #modify=ObjectId()
 
 def redirect_url():
@@ -34,7 +36,7 @@ def lists ():
 	#Display the all Tasks
 	todos_l = todos.find()
 	a1="active"
-	return render_template('index.html',a1=a1,todos=todos_l,t=title,h=heading)
+	return render_template('index.html',a1=a1,todos=todos_l,t=title,h=heading,hostname=hostname)
 
 @app.route("/")
 @app.route("/uncompleted")
