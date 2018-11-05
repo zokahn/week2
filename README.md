@@ -24,9 +24,9 @@ This containerization containts two containers
 The Dockerfile and Kubernetes yaml files will take care of everything. However action need to be taken to activate the containers and to use the running application. These actions and steps are listed below on each platform.
 
 
-### Kubernetes
+### Kubernetes single pod
 
-To run the application
+To run the application in a single pod with two containers. The database and the webapplication, seamlessly together in a single pod.
 ```
 kubectl create -f week2-pod.yaml
 ```
@@ -36,6 +36,67 @@ To have a local networkport forward to the webserver running in the pod (connect
 kubectl port-forward week2 8081:5000
 ```
 
+
+### Kubernetes multi pod
+
+To run the application in a more production style deployment. Two services pointing to a deployment of the app and a replicationcontroller running the database. These are now seperate allowing us to manage the deployment of the app by running two versions in a canary test or just add more running instances. 
+
+```
+kubectl create -f k8s-deployment/k8s-multi-pod/week2-db.yaml
+kubectl create -f k8s-deployment/k8s-multi-pod/week2-db-service.yaml
+kubectl create -f k8s-deployment/k8s-multi-pod/week2-app.yaml
+kubectl create -f k8s-deployment/k8s-multi-pod/week2-app-service.yaml
+```
+So now we have a running application that is accessible via the public ip address of a K8s master node. How to get to it? Via the portnumber you find out here:
+
+```
+
+
+You'll see the tasklist application running, it runs on two webservers and one db server. Want to know for sure? This application as it is running now uses week2 image version: 1.2. The next version includes a new index.html where it shows the hostname of the webserver. So, lets do a running upgrade of the application with  --- no downtime ---.
+
+1. first we check the deployement
+2. we associate a new image version with the deploument
+3. $profit$
+
+```
+kubectl rollout status deployment week2-deployment
+kubectl set image deployment/week2-deployment week2=bartvandenheuvel/week2:v1.3
+kubectl describe deployment week2-deployment
+```
+In the described deployment on the last line you can see the movements in the last part, the new image is also listed!
+You could revert back if needed. Using the command above but also using undo functionality
+
+```
+kubectl rollout history deployment/week2-deployment
+kubectl rollout undo deployment/week2-deployment 
+
+```
+
+you could check to make sure that your revision does what you think by checking:
+
+```
+kubectl rollout history deployment/week2-deployment
+kubectl rollout history deployment/week2-deployment --revision=5
+kubectl rollout undo deployment/week2-deployment append --to-revision=5
+```
+Rolled back and rolled forward again. Life is good!
+
+
+Now our application is going viral and we need more power to the application server. We need scale our deployment with more application servers:
+
+```
+kubectl get deployments
+kubectl scale deployment/week2-deployment --replicas=10
+watch -n 0.1 kubectl get deployments
+```
+
+
+Clean up! what we have created!
+```
+kubectl delete services week2 week2-mongo
+kubectl delete deployments week2-deployment
+kubectl delete replicationcontroller week2-mongo
+```
 
 ### simply run stuff
 
