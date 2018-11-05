@@ -83,7 +83,7 @@ you could check to make sure that your revision does what you think by checking:
 ```
 kubectl rollout history deployment/week2-deployment
 kubectl rollout history deployment/week2-deployment --revision=5
-kubectl rollout undo deployment/week2-deployment append --to-revision=5
+kubectl rollout undo deployment/week2-deployment --to-revision=5
 ```
 Rolled back and rolled forward again. Life is good!
 
