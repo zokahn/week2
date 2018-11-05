@@ -36,7 +36,7 @@ def lists ():
 	#Display the all Tasks
 	todos_l = todos.find()
 	a1="active"
-	return render_template('index.html',a1=a1,todos=todos_l,t=title,h=heading,hostname=hostname)
+	return render_template('index.html',a1=a1,todos=todos_l,t=title,h=heading,hn=hostname)
 
 @app.route("/")
 @app.route("/uncompleted")
@@ -44,7 +44,7 @@ def tasks ():
 	#Display the Uncompleted Tasks
 	todos_l = todos.find({"done":"no"})
 	a2="active"
-	return render_template('index.html',a2=a2,todos=todos_l,t=title,h=heading)
+	return render_template('index.html',a2=a2,todos=todos_l,t=title,h=heading,hn=hostname)
 
 
 @app.route("/completed")
@@ -52,7 +52,7 @@ def completed ():
 	#Display the Completed Tasks
 	todos_l = todos.find({"done":"yes"})
 	a3="active"
-	return render_template('index.html',a3=a3,todos=todos_l,t=title,h=heading)
+	return render_template('index.html',a3=a3,todos=todos_l,t=title,h=heading,hn=hostname)
 
 @app.route("/done")
 def done ():

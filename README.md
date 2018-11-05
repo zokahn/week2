@@ -37,6 +37,23 @@ kubectl port-forward week2 8081:5000
 ```
 
 
+### simply run stuff
+
+You can also simply run stuff, just to get'r done. In this case you need to install the dependencies as listed below, including mongo. If you want mongo to run in a container to make sure you can run the application and the application only on the host os you can run:
+```
+docker run -d -p 27017:27017 -v ~/data:/data/db mongo
+```
+
+after that start the code by:
+```
+python test.py
+```
+
+Maybe you want to run it as a daemon, starting it as a background process:
+```
+python test.py &
+```
+The steps above will allow you to code, run and debug without the confines of a container. Dirty but it works.
 
 
 
