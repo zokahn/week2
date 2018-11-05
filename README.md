@@ -49,8 +49,13 @@ kubectl create -f k8s-deployment/k8s-multi-pod/week2-app-service.yaml
 ```
 So now we have a running application that is accessible via the public ip address of a K8s master node. How to get to it? Via the portnumber you find out here:
 
+1. Find out the NodePort, the tcp port on which the service is published. It will forward traffic to the right containers
+2. You should know your public ip of your management node, this is in your bundle or known when you install
+3. Add the port behind this public ip: you'll get http://10.0.0.44:33982 or something simular
+main things to remember, public ip of your management node (or nodes) port of the service you just created
+
 ```
-this needs work
+kubectl describe service/week2 | grep NodePort
 ```
 
 You'll see the tasklist application running, it runs on two webservers and one db server. Want to know for sure? This application as it is running now uses week2 image version: 1.2. The next version includes a new index.html where it shows the hostname of the webserver. So, lets do a running upgrade of the application with  --- no downtime ---.
@@ -90,7 +95,8 @@ kubectl get deployments
 kubectl scale deployment/week2-deployment --replicas=10
 watch -n 0.1 kubectl get deployments
 ```
-
+There are more goodies listed here such as autoscaling based on cpu pressure, pausing and resuming
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 
 Clean up! what we have created!
 ```
