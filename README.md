@@ -50,7 +50,8 @@ kubectl create -f k8s-deployment/k8s-multi-pod/week2-app-service.yaml
 So now we have a running application that is accessible via the public ip address of a K8s master node. How to get to it? Via the portnumber you find out here:
 
 ```
-
+this needs work
+```
 
 You'll see the tasklist application running, it runs on two webservers and one db server. Want to know for sure? This application as it is running now uses week2 image version: 1.2. The next version includes a new index.html where it shows the hostname of the webserver. So, lets do a running upgrade of the application with  --- no downtime ---.
 
